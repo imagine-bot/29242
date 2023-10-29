@@ -25,7 +25,12 @@ const UserList: React.FC<UserListProps> = ({ users }) => {
   });
 
   const handleInputChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-    setNewUser({ ...newUser, [e.target.name]: e.target.value });
+    if (e.target.name === 'phone' && e.target.value.length === 10) {
+      const formattedPhone = e.target.value.replace(/(\d{3})(\d{3})(\d{4})/, '$1-$2-$3');
+      setNewUser({ ...newUser, [e.target.name]: formattedPhone });
+    } else {
+      setNewUser({ ...newUser, [e.target.name]: e.target.value });
+    }
   };
 
   const handleAddUser = (e: React.KeyboardEvent<HTMLInputElement>) => {

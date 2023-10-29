@@ -14,6 +14,7 @@ type UserListProps = {
 const UserList: React.FC<UserListProps> = ({ users }) => {
   const [newUser, setNewUser] = useState<User>({ name: '', email: '', phone: '' });
   const [userList, setUserList] = useState<User[]>(users);
+  const [showInput, setShowInput] = useState<boolean>(false);
 
   const handleInputChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     setNewUser({ ...newUser, [e.target.name]: e.target.value });
@@ -23,6 +24,7 @@ const UserList: React.FC<UserListProps> = ({ users }) => {
     if (e.key === 'Enter') {
       setUserList([...userList, newUser]);
       setNewUser({ name: '', email: '', phone: '' });
+      setShowInput(false);
     }
   };
 
@@ -34,6 +36,9 @@ const UserList: React.FC<UserListProps> = ({ users }) => {
             <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Name</th>
             <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Email</th>
             <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Phone</th>
+            <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
+              <PlusCircledIcon onClick={() => setShowInput(true)} />
+            </th>
           </tr>
         </thead>
         <tbody className="bg-white divide-y divide-gray-200">
@@ -44,38 +49,45 @@ const UserList: React.FC<UserListProps> = ({ users }) => {
               <td className="px-6 py-4 whitespace-nowrap">{user.phone}</td>
             </tr>
           ))}
+          {showInput && (
+            <tr>
+              <td className="px-6 py-4 whitespace-nowrap">
+                <input
+                  type="text"
+                  name="name"
+                  placeholder="Name"
+                  value={newUser.name}
+                  onChange={handleInputChange}
+                  onKeyDown={handleAddUser}
+                  className="border-2 border-gray-300 rounded-md p-2 ml-2"
+                />
+              </td>
+              <td className="px-6 py-4 whitespace-nowrap">
+                <input
+                  type="text"
+                  name="email"
+                  placeholder="Email"
+                  value={newUser.email}
+                  onChange={handleInputChange}
+                  onKeyDown={handleAddUser}
+                  className="border-2 border-gray-300 rounded-md p-2 ml-2"
+                />
+              </td>
+              <td className="px-6 py-4 whitespace-nowrap">
+                <input
+                  type="text"
+                  name="phone"
+                  placeholder="Phone"
+                  value={newUser.phone}
+                  onChange={handleInputChange}
+                  onKeyDown={handleAddUser}
+                  className="border-2 border-gray-300 rounded-md p-2 ml-2"
+                />
+              </td>
+            </tr>
+          )}
         </tbody>
       </table>
-      <div className="flex items-center mt-4">
-        <PlusCircledIcon />
-        <input
-          type="text"
-          name="name"
-          placeholder="Name"
-          value={newUser.name}
-          onChange={handleInputChange}
-          onKeyDown={handleAddUser}
-          className="border-2 border-gray-300 rounded-md p-2 ml-2"
-        />
-        <input
-          type="text"
-          name="email"
-          placeholder="Email"
-          value={newUser.email}
-          onChange={handleInputChange}
-          onKeyDown={handleAddUser}
-          className="border-2 border-gray-300 rounded-md p-2 ml-2"
-        />
-        <input
-          type="text"
-          name="phone"
-          placeholder="Phone"
-          value={newUser.phone}
-          onChange={handleInputChange}
-          onKeyDown={handleAddUser}
-          className="border-2 border-gray-300 rounded-md p-2 ml-2"
-        />
-      </div>
     </div>
   );
 };

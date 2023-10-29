@@ -89,7 +89,7 @@ const UserList: React.FC<UserListProps> = ({ users }) => {
                   value={newUser.name}
                   onChange={handleInputChange}
                   onKeyDown={handleAddUser}
-                  className="border-2 border-gray-300 rounded-md p-2 w-full"
+                  className="border-2 border-gray-300 rounded-md p-2 w-3/4"
                 />
               </td>
               <td className="px-6 py-4 whitespace-nowrap">
@@ -100,7 +100,7 @@ const UserList: React.FC<UserListProps> = ({ users }) => {
                   value={newUser.email}
                   onChange={handleInputChange}
                   onKeyDown={handleAddUser}
-                  className={`border-2 rounded-md p-2 w-full ${errors.email ? 'border-red-500' : 'border-gray-300'}`}
+                  className={`border-2 rounded-md p-2 w-3/4 ${errors.email ? 'border-red-500' : 'border-gray-300'}`}
                   title={errors.email}
                 />
               </td>
@@ -112,7 +112,7 @@ const UserList: React.FC<UserListProps> = ({ users }) => {
                   value={newUser.phone}
                   onChange={handleInputChange}
                   onKeyDown={handleAddUser}
-                  className={`border-2 rounded-md p-2 w-full ${errors.phone ? 'border-red-500' : 'border-gray-300'}`}
+                  className={`border-2 rounded-md p-2 w-3/4 ${errors.phone ? 'border-red-500' : 'border-gray-300'}`}
                   title={errors.phone}
                 />
               </td>

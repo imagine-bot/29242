@@ -37,7 +37,7 @@ const UserList: React.FC<UserListProps> = ({ users }) => {
             <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Email</th>
             <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Phone</th>
             <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
-              <PlusCircledIcon onClick={() => setShowInput(true)} />
+              <PlusCircledIcon className="hover:text-blue-500 cursor-pointer" onClick={() => setShowInput(true)} />
             </th>
           </tr>
         </thead>
@@ -59,7 +59,7 @@ const UserList: React.FC<UserListProps> = ({ users }) => {
                   value={newUser.name}
                   onChange={handleInputChange}
                   onKeyDown={handleAddUser}
-                  className="border-2 border-gray-300 rounded-md p-2 ml-2"
+                  className="border-2 border-gray-300 rounded-md p-2 w-full"
                 />
               </td>
               <td className="px-6 py-4 whitespace-nowrap">
@@ -70,7 +70,7 @@ const UserList: React.FC<UserListProps> = ({ users }) => {
                   value={newUser.email}
                   onChange={handleInputChange}
                   onKeyDown={handleAddUser}
-                  className="border-2 border-gray-300 rounded-md p-2 ml-2"
+                  className="border-2 border-gray-300 rounded-md p-2 w-full"
                 />
               </td>
               <td className="px-6 py-4 whitespace-nowrap">
@@ -81,7 +81,7 @@ const UserList: React.FC<UserListProps> = ({ users }) => {
                   value={newUser.phone}
                   onChange={handleInputChange}
                   onKeyDown={handleAddUser}
-                  className="border-2 border-gray-300 rounded-md p-2 ml-2"
+                  className="border-2 border-gray-300 rounded-md p-2 w-full"
                 />
               </td>
             </tr>

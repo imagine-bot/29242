@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import { PlusCircledIcon } from '@radix-ui/react-icons';
+import { z, ZodError } from 'zod';
 
 type User = {
   name: string;
@@ -15,6 +16,13 @@ const UserList: React.FC<UserListProps> = ({ users }) => {
   const [newUser, setNewUser] = useState<User>({ name: '', email: '', phone: '' });
   const [userList, setUserList] = useState<User[]>(users);
   const [showInput, setShowInput] = useState<boolean>(false);
+  const [errors, setErrors] = useState<{ email?: string; phone?: string }>({});
+
+  const userSchema = z.object({
+    name: z.string(),
+    email: z.string().email(),
+    phone: z.string().regex(/^\d{3}-\d{3}-\d{4}$/),
+  });
 
   const handleInputChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     setNewUser({ ...newUser, [e.target.name]: e.target.value });
@@ -22,9 +30,17 @@ const UserList: React.FC<UserListProps> = ({ users }) => {
 
   const handleAddUser = (e: React.KeyboardEvent<HTMLInputElement>) => {
     if (e.key === 'Enter') {
-      setUserList([...userList, newUser]);
-      setNewUser({ name: '', email: '', phone: '' });
-      setShowInput(false);
+      try {
+        userSchema.parse(newUser);
+        setUserList([...userList, newUser]);
+        setNewUser({ name: '', email: '', phone: '' });
+        setShowInput(false);
+        setErrors({});
+      } catch (error) {
+        if (error instanceof ZodError) {
+          setErrors(error.formErrors.fieldErrors);
+        }
+      }
     }
   };
 
@@ -70,7 +86,8 @@ const UserList: React.FC<UserListProps> = ({ users }) => {
                   value={newUser.email}
                   onChange={handleInputChange}
                   onKeyDown={handleAddUser}
-                  className="border-2 border-gray-300 rounded-md p-2 w-full"
+                  className={`border-2 ${errors.email ? 'border-red-500' : 'border-gray-300'} rounded-md p-2 w-full`}
+                  title={errors.email}
                 />
               </td>
               <td className="px-6 py-4 whitespace-nowrap">
@@ -81,7 +98,8 @@ const UserList: React.FC<UserListProps> = ({ users }) => {
                   value={newUser.phone}
                   onChange={handleInputChange}
                   onKeyDown={handleAddUser}
-                  className="border-2 border-gray-300 rounded-md p-2 w-full"
+                  className={`border-2 ${errors.phone ? 'border-red-500' : 'border-gray-300'} rounded-md p-2 w-full`}
+                  title={errors.phone}
                 />
               </td>
               <td className="px-6 py-4 whitespace-nowrap"></td>

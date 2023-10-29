@@ -57,13 +57,13 @@ const UserList: React.FC<UserListProps> = ({ users }) => {
 
   return (
     <div>
-      <table className="min-w-full divide-y divide-gray-200 shadow-sm rounded-lg overflow-hidden">
+      <table className="min-w-full divide-y divide-gray-200 shadow-sm rounded-lg overflow-hidden table-fixed">
         <thead className="bg-gray-50">
           <tr>
-            <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Name</th>
-            <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Email</th>
-            <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Phone</th>
-            <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
+            <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider w-1/4">Name</th>
+            <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider w-1/4">Email</th>
+            <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider w-1/4">Phone</th>
+            <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider w-1/4">
               <PlusCircledIcon className="cursor-pointer hover:text-blue-500" onClick={() => setShowInput(true)} />
             </th>
           </tr>

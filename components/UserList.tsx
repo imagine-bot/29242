@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { PlusCircledIcon, CircleIcon } from '@radix-ui/react-icons';
+import { PlusCircledIcon, CrossCircledIcon } from '@radix-ui/react-icons';
 import { z, ZodError } from 'zod';
 
 type User = {
@@ -75,7 +75,7 @@ const UserList: React.FC<UserListProps> = ({ users }) => {
               <td className="px-6 py-4 whitespace-nowrap">{user.email}</td>
               <td className="px-6 py-4 whitespace-nowrap">{user.phone}</td>
               <td className="px-6 py-4 whitespace-nowrap">
-                <CircleIcon className="cursor-pointer hover:text-red-500" onClick={() => handleDeleteUser(index)} />
+                <CrossCircledIcon className="cursor-pointer hover:text-red-500" onClick={() => handleDeleteUser(index)} />
               </td>
             </tr>
           ))}

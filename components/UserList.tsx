@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { PlusCircledIcon } from '@radix-ui/react-icons';
+import { PlusCircledIcon, CircleIcon } from '@radix-ui/react-icons';
 import { z, ZodError } from 'zod';
 
 type User = {
@@ -49,6 +49,12 @@ const UserList: React.FC<UserListProps> = ({ users }) => {
     }
   };
 
+  const handleDeleteUser = (index: number) => {
+    const updatedUserList = [...userList];
+    updatedUserList.splice(index, 1);
+    setUserList(updatedUserList);
+  };
+
   return (
     <div>
       <table className="min-w-full divide-y divide-gray-200 shadow-sm rounded-lg overflow-hidden">
@@ -58,7 +64,7 @@ const UserList: React.FC<UserListProps> = ({ users }) => {
             <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Email</th>
             <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Phone</th>
             <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
-              <PlusCircledIcon className="hover:text-blue-500 cursor-pointer" onClick={() => setShowInput(true)} />
+              <PlusCircledIcon className="cursor-pointer hover:text-blue-500" onClick={() => setShowInput(true)} />
             </th>
           </tr>
         </thead>
@@ -68,6 +74,9 @@ const UserList: React.FC<UserListProps> = ({ users }) => {
               <td className="px-6 py-4 whitespace-nowrap">{user.name}</td>
               <td className="px-6 py-4 whitespace-nowrap">{user.email}</td>
               <td className="px-6 py-4 whitespace-nowrap">{user.phone}</td>
+              <td className="px-6 py-4 whitespace-nowrap">
+                <CircleIcon className="cursor-pointer hover:text-red-500" onClick={() => handleDeleteUser(index)} />
+              </td>
             </tr>
           ))}
           {showInput && (
@@ -91,7 +100,7 @@ const UserList: React.FC<UserListProps> = ({ users }) => {
                   value={newUser.email}
                   onChange={handleInputChange}
                   onKeyDown={handleAddUser}
-                  className={`border-2 ${errors.email ? 'border-red-500' : 'border-gray-300'} rounded-md p-2 w-full`}
+                  className={`border-2 rounded-md p-2 w-full ${errors.email ? 'border-red-500' : 'border-gray-300'}`}
                   title={errors.email}
                 />
               </td>
@@ -103,7 +112,7 @@ const UserList: React.FC<UserListProps> = ({ users }) => {
                   value={newUser.phone}
                   onChange={handleInputChange}
                   onKeyDown={handleAddUser}
-                  className={`border-2 ${errors.phone ? 'border-red-500' : 'border-gray-300'} rounded-md p-2 w-full`}
+                  className={`border-2 rounded-md p-2 w-full ${errors.phone ? 'border-red-500' : 'border-gray-300'}`}
                   title={errors.phone}
                 />
               </td>

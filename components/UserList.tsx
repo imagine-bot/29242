@@ -84,6 +84,7 @@ const UserList: React.FC<UserListProps> = ({ users }) => {
                   className="border-2 border-gray-300 rounded-md p-2 w-full"
                 />
               </td>
+              <td className="px-6 py-4 whitespace-nowrap"></td>
             </tr>
           )}
         </tbody>

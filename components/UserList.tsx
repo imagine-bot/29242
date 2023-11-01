@@ -34,7 +34,7 @@ const UserList: React.FC<UserListProps> = ({ users }) => {
         {/* existing table code */}
         {showInput && (
           <tr>
-            <td>
+            <td className="w-1/3">
               <input
                 type="text"
                 name="name"
@@ -45,7 +45,7 @@ const UserList: React.FC<UserListProps> = ({ users }) => {
                 className="w-full border-2 border-gray-300 rounded-md p-2 mx-2"
               />
             </td>
-            <td>
+            <td className="w-1/3">
               <input
                 type="text"
                 name="email"
@@ -56,7 +56,7 @@ const UserList: React.FC<UserListProps> = ({ users }) => {
                 className="w-full border-2 border-gray-300 rounded-md p-2 mx-2"
               />
             </td>
-            <td>
+            <td className="w-1/3">
               <input
                 type="text"
                 name="phone"

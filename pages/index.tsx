@@ -1,8 +1,4 @@
-import Image from 'next/image'
-import { Inter } from 'next/font/google'
 import UserList from '../components/UserList'
-
-const inter = Inter({ subsets: ['latin'] })
 
 export default function Home() {
   const users = [
@@ -12,10 +8,10 @@ export default function Home() {
   ]
 
   return (
-    <main
-      className={`flex min-h-screen flex-col items-center justify-between p-24 bg-white ${inter.className}`}
-    >
-      <UserList users={users} />
-    </main>
+    <div className="flex flex-col items-center justify-center min-h-screen py-2">
+      <main className="flex flex-col items-center justify-center w-full flex-1 px-20 text-center">
+        <UserList users={users} />
+      </main>
+    </div>
   )
 }

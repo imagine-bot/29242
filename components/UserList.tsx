@@ -42,7 +42,7 @@ const UserList: React.FC<UserListProps> = ({ users }) => {
                 value={newUser.name}
                 onChange={handleInputChange}
                 onKeyDown={handleAddUser}
-                className="border-2 border-gray-300 rounded-md p-2 mx-2"
+                className="w-full border-2 border-gray-300 rounded-md p-2 mx-2"
               />
             </td>
             <td>
@@ -53,7 +53,7 @@ const UserList: React.FC<UserListProps> = ({ users }) => {
                 value={newUser.email}
                 onChange={handleInputChange}
                 onKeyDown={handleAddUser}
-                className="border-2 border-gray-300 rounded-md p-2 mx-2"
+                className="w-full border-2 border-gray-300 rounded-md p-2 mx-2"
               />
             </td>
             <td>
@@ -64,14 +64,14 @@ const UserList: React.FC<UserListProps> = ({ users }) => {
                 value={newUser.phone}
                 onChange={handleInputChange}
                 onKeyDown={handleAddUser}
-                className="border-2 border-gray-300 rounded-md p-2 mx-2"
+                className="w-full border-2 border-gray-300 rounded-md p-2 mx-2"
               />
             </td>
           </tr>
         )}
       </table>
       <div className="flex items-center mt-4">
-        <PlusIcon onClick={() => setShowInput(true)} />
+        <PlusIcon className="hover:text-blue-500 cursor-pointer" onClick={() => setShowInput(true)} />
       </div>
     </div>
   );
